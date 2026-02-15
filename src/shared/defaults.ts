@@ -1,0 +1,188 @@
+import type { MenuItem, ExtensionSettings } from './types';
+
+export const DEFAULT_ITEMS: MenuItem[] = [
+  // Search engines
+  {
+    id: 'google',
+    label: 'Google',
+    url: 'https://www.google.com/search?q=%s',
+    category: 'search',
+    enabled: false,
+    icon: '🔍',
+  },
+  {
+    id: 'bing',
+    label: 'Bing',
+    url: 'https://www.bing.com/search?q=%s',
+    category: 'search',
+    enabled: false,
+    icon: '🅱️',
+  },
+  {
+    id: 'duckduckgo',
+    label: 'DuckDuckGo',
+    url: 'https://duckduckgo.com/?q=%s',
+    category: 'search',
+    enabled: false,
+    icon: '🦆',
+  },
+
+  // Translate
+  {
+    id: 'google-translate',
+    label: 'Translate',
+    url: 'https://translate.google.com/?sl=auto&tl=%lang%&text=%s',
+    category: 'translate',
+    enabled: true,
+    icon: '🌐',
+  },
+
+  // Quick jump sites
+  {
+    id: 'wikipedia',
+    label: 'Wikipedia',
+    url: 'https://en.wikipedia.org/wiki/Special:Search?search=%s',
+    category: 'quickjump',
+    enabled: true,
+    icon: '📖',
+  },
+  {
+    id: 'youtube',
+    label: 'YouTube',
+    url: 'https://www.youtube.com/results?search_query=%s',
+    category: 'quickjump',
+    enabled: true,
+    icon: '▶️',
+  },
+  {
+    id: 'google-maps',
+    label: 'Google Maps',
+    url: 'https://www.google.com/maps/search/%s',
+    category: 'quickjump',
+    enabled: true,
+    icon: '📍',
+  },
+  {
+    id: 'amazon',
+    label: 'Amazon',
+    url: 'https://www.amazon.com/s?k=%s',
+    category: 'quickjump',
+    enabled: true,
+    icon: '🛒',
+  },
+  {
+    id: 'reddit',
+    label: 'Reddit',
+    url: 'https://www.reddit.com/search/?q=%s',
+    category: 'quickjump',
+    enabled: true,
+    icon: '🟠',
+  },
+  {
+    id: 'github',
+    label: 'GitHub',
+    url: 'https://github.com/search?q=%s',
+    category: 'quickjump',
+    enabled: false,
+    icon: '🐙',
+  },
+  {
+    id: 'ebay',
+    label: 'eBay',
+    url: 'https://www.ebay.com/sch/i.html?_nkw=%s',
+    category: 'quickjump',
+    enabled: false,
+    icon: '🏷️',
+  },
+  {
+    id: 'aliexpress',
+    label: 'AliExpress',
+    url: 'https://www.aliexpress.com/wholesale?SearchText=%s',
+    category: 'quickjump',
+    enabled: false,
+    icon: '📦',
+  },
+  {
+    id: 'iherb',
+    label: 'iHerb',
+    url: 'https://www.iherb.com/search?kw=%s',
+    category: 'quickjump',
+    enabled: false,
+    icon: '🌿',
+  },
+
+  // AI search
+  {
+    id: 'chatgpt',
+    label: 'ChatGPT',
+    url: 'https://chatgpt.com/?q=%s',
+    category: 'ai',
+    enabled: true,
+    icon: '🤖',
+  },
+  {
+    id: 'perplexity',
+    label: 'Perplexity',
+    url: 'https://www.perplexity.ai/search?q=%s',
+    category: 'ai',
+    enabled: true,
+    icon: '🔮',
+  },
+  {
+    id: 'claude',
+    label: 'Claude',
+    url: 'https://claude.ai/new?q=%s',
+    category: 'ai',
+    enabled: true,
+    icon: '🧠',
+  },
+];
+
+export const DEFAULT_SETTINGS: ExtensionSettings = {
+  enabled: true,
+  items: DEFAULT_ITEMS,
+  translateLang: 'en',
+  uiLang: 'en',
+  theme: 'system',
+};
+
+export const CATEGORY_LABELS: Record<MenuItem['category'], string> = {
+  search: 'Search',
+  translate: 'Translate',
+  quickjump: 'Quick Jump',
+  ai: 'AI Search',
+  custom: 'Custom',
+};
+
+export const LANGUAGES = [
+  { code: 'en', name: 'English' },
+  { code: 'es', name: 'Spanish' },
+  { code: 'fr', name: 'French' },
+  { code: 'de', name: 'German' },
+  { code: 'it', name: 'Italian' },
+  { code: 'pt', name: 'Portuguese' },
+  { code: 'ru', name: 'Russian' },
+  { code: 'ja', name: 'Japanese' },
+  { code: 'ko', name: 'Korean' },
+  { code: 'zh-CN', name: 'Chinese (Simplified)' },
+  { code: 'zh-TW', name: 'Chinese (Traditional)' },
+  { code: 'ar', name: 'Arabic' },
+  { code: 'hi', name: 'Hindi' },
+  { code: 'tr', name: 'Turkish' },
+  { code: 'pl', name: 'Polish' },
+  { code: 'nl', name: 'Dutch' },
+  { code: 'sv', name: 'Swedish' },
+  { code: 'da', name: 'Danish' },
+  { code: 'fi', name: 'Finnish' },
+  { code: 'no', name: 'Norwegian' },
+  { code: 'uk', name: 'Ukrainian' },
+  { code: 'th', name: 'Thai' },
+  { code: 'vi', name: 'Vietnamese' },
+  { code: 'id', name: 'Indonesian' },
+  { code: 'ms', name: 'Malay' },
+  { code: 'he', name: 'Hebrew' },
+  { code: 'cs', name: 'Czech' },
+  { code: 'el', name: 'Greek' },
+  { code: 'ro', name: 'Romanian' },
+  { code: 'hu', name: 'Hungarian' },
+];

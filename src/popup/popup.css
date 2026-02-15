@@ -1,0 +1,146 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --popup-bg: #fff;
+  --popup-text: #1a1a2e;
+  --popup-text-secondary: #444;
+  --popup-text-muted: #888;
+  --popup-border: #ddd;
+  --popup-btn-bg: #f8f9fa;
+  --popup-btn-hover: #e9ecef;
+  --popup-btn-text: #333;
+  --popup-toggle-off: #ccc;
+  --popup-toggle-on: #4361ee;
+  --popup-knob: #fff;
+}
+
+[data-theme="dark"] {
+  --popup-bg: #1a1a2e;
+  --popup-text: #e0e0e0;
+  --popup-text-secondary: #bbb;
+  --popup-text-muted: #888;
+  --popup-border: #3a3a5c;
+  --popup-btn-bg: #252540;
+  --popup-btn-hover: #2e2e4a;
+  --popup-btn-text: #ccc;
+  --popup-toggle-off: #3a3a5c;
+  --popup-toggle-on: #5b7cfa;
+  --popup-knob: #e0e0e0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  width: 280px;
+  background: var(--popup-bg);
+  color: var(--popup-text);
+  transition: background 0.2s, color 0.2s;
+}
+
+.popup {
+  padding: 16px;
+}
+
+.popup-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.popup-title {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.coffee-btn {
+  display: inline-block;
+  padding: 4px 10px;
+  background: #ffdd00;
+  color: #000;
+  font-size: 11px;
+  font-weight: 600;
+  border-radius: 6px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.15s;
+}
+
+.coffee-btn:hover {
+  background: #e6c800;
+}
+
+.popup-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.toggle-label {
+  font-size: 14px;
+  color: var(--popup-text-secondary);
+  font-weight: 500;
+}
+
+.toggle-btn {
+  position: relative;
+  width: 44px;
+  height: 24px;
+  border-radius: 12px;
+  border: none;
+  background: var(--popup-toggle-off);
+  cursor: pointer;
+  transition: background 0.2s;
+  padding: 0;
+}
+
+.toggle-btn.active {
+  background: var(--popup-toggle-on);
+}
+
+.toggle-knob {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--popup-knob);
+  transition: transform 0.2s;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.toggle-btn.active .toggle-knob {
+  transform: translateX(20px);
+}
+
+.popup-hint {
+  font-size: 12px;
+  color: var(--popup-text-muted);
+  line-height: 1.4;
+}
+
+.settings-btn {
+  width: 100%;
+  padding: 8px 16px;
+  border: 1px solid var(--popup-border);
+  border-radius: 6px;
+  background: var(--popup-btn-bg);
+  color: var(--popup-btn-text);
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.settings-btn:hover {
+  background: var(--popup-btn-hover);
+}
