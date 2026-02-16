@@ -28,4 +28,4 @@ When you click a menu item, the selected text is passed to the chosen website (e
 
 ## Contact
 
-If you have questions about this privacy policy, open an issue on the [GitHub repository](https://github.com/anthropasson/sidekick).
+If you have questions about this privacy policy, open an issue on the [GitHub repository](https://github.com/AntonP210/side-kick-addon).
