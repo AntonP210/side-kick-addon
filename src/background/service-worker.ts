@@ -169,8 +169,11 @@ onSettingsChanged(() => {
 });
 
 // Build menus on install and startup
-browser.runtime.onInstalled.addListener(() => {
+browser.runtime.onInstalled.addListener((details) => {
   scheduleBuildMenus();
+  if (details.reason === 'install') {
+    browser.runtime.openOptionsPage();
+  }
 });
 
 browser.runtime.onStartup.addListener(() => {

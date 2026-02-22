@@ -22,6 +22,7 @@ export interface UiStrings {
   addCustomSiteDesc: string;
   labelPlaceholder: string;
   urlPlaceholder: string;
+  iconPlaceholder: string;
   addSite: string;
 
   backupRestore: string;
@@ -108,6 +109,7 @@ const en: UiStrings = {
   addCustomSiteDesc: 'Use %s in the URL where the selected text should go.',
   labelPlaceholder: 'Label (e.g. Twitter)',
   urlPlaceholder: 'URL (e.g. https://twitter.com/search?q=%s)',
+  iconPlaceholder: 'Icon (e.g. 🔍)',
   addSite: 'Add Site',
 
   backupRestore: 'Backup & Restore',
@@ -179,6 +181,7 @@ const es: UiStrings = {
   addCustomSiteDesc: 'Usa %s en la URL donde debe ir el texto seleccionado.',
   labelPlaceholder: 'Nombre (ej. Twitter)',
   urlPlaceholder: 'URL (ej. https://twitter.com/search?q=%s)',
+  iconPlaceholder: 'Icono (ej. 🔍)',
   addSite: 'Añadir sitio',
 
   backupRestore: 'Copia de seguridad',
@@ -250,6 +253,7 @@ const fr: UiStrings = {
   addCustomSiteDesc: 'Utilisez %s dans l\'URL à l\'endroit où le texte sélectionné doit apparaître.',
   labelPlaceholder: 'Nom (ex. Twitter)',
   urlPlaceholder: 'URL (ex. https://twitter.com/search?q=%s)',
+  iconPlaceholder: 'Icône (ex. 🔍)',
   addSite: 'Ajouter le site',
 
   backupRestore: 'Sauvegarde et restauration',
@@ -321,6 +325,7 @@ const de: UiStrings = {
   addCustomSiteDesc: 'Verwende %s in der URL, wo der markierte Text eingefügt werden soll.',
   labelPlaceholder: 'Name (z.B. Twitter)',
   urlPlaceholder: 'URL (z.B. https://twitter.com/search?q=%s)',
+  iconPlaceholder: 'Symbol (z.B. 🔍)',
   addSite: 'Seite hinzufügen',
 
   backupRestore: 'Sichern & Wiederherstellen',
@@ -392,6 +397,7 @@ const ru: UiStrings = {
   addCustomSiteDesc: 'Используйте %s в URL, куда нужно подставить выделенный текст.',
   labelPlaceholder: 'Название (напр. Twitter)',
   urlPlaceholder: 'URL (напр. https://twitter.com/search?q=%s)',
+  iconPlaceholder: 'Иконка (напр. 🔍)',
   addSite: 'Добавить сайт',
 
   backupRestore: 'Резервное копирование',
@@ -463,6 +469,7 @@ const ja: UiStrings = {
   addCustomSiteDesc: 'URLの中で選択テキストを挿入する場所に%sを使用してください。',
   labelPlaceholder: 'ラベル（例：Twitter）',
   urlPlaceholder: 'URL（例：https://twitter.com/search?q=%s）',
+  iconPlaceholder: 'アイコン（例：🔍）',
   addSite: 'サイトを追加',
 
   backupRestore: 'バックアップと復元',
@@ -534,6 +541,7 @@ const zhCN: UiStrings = {
   addCustomSiteDesc: '在URL中使用%s表示选中文本的插入位置。',
   labelPlaceholder: '名称（例如 Twitter）',
   urlPlaceholder: 'URL（例如 https://twitter.com/search?q=%s）',
+  iconPlaceholder: '图标（例如 🔍）',
   addSite: '添加网站',
 
   backupRestore: '备份与恢复',
@@ -605,6 +613,7 @@ const ko: UiStrings = {
   addCustomSiteDesc: 'URL에서 선택한 텍스트가 들어갈 위치에 %s를 사용하세요.',
   labelPlaceholder: '이름 (예: Twitter)',
   urlPlaceholder: 'URL (예: https://twitter.com/search?q=%s)',
+  iconPlaceholder: '아이콘 (예: 🔍)',
   addSite: '사이트 추가',
 
   backupRestore: '백업 및 복원',
@@ -676,6 +685,7 @@ const ar: UiStrings = {
   addCustomSiteDesc: 'استخدم %s في الرابط حيث يجب وضع النص المحدد.',
   labelPlaceholder: 'الاسم (مثال: Twitter)',
   urlPlaceholder: 'الرابط (مثال: https://twitter.com/search?q=%s)',
+  iconPlaceholder: 'الأيقونة (مثال: 🔍)',
   addSite: 'إضافة موقع',
 
   backupRestore: 'النسخ الاحتياطي والاستعادة',
@@ -747,6 +757,7 @@ const pt: UiStrings = {
   addCustomSiteDesc: 'Use %s na URL onde o texto selecionado deve ser inserido.',
   labelPlaceholder: 'Nome (ex. Twitter)',
   urlPlaceholder: 'URL (ex. https://twitter.com/search?q=%s)',
+  iconPlaceholder: 'Ícone (ex. 🔍)',
   addSite: 'Adicionar site',
 
   backupRestore: 'Backup e restauração',
@@ -818,6 +829,7 @@ const uk: UiStrings = {
   addCustomSiteDesc: 'Використовуйте %s в URL, де потрібно підставити виділений текст.',
   labelPlaceholder: 'Назва (напр. Twitter)',
   urlPlaceholder: 'URL (напр. https://twitter.com/search?q=%s)',
+  iconPlaceholder: 'Іконка (напр. 🔍)',
   addSite: 'Додати сайт',
 
   backupRestore: 'Резервне копіювання',
@@ -889,6 +901,7 @@ const tr: UiStrings = {
   addCustomSiteDesc: 'Seçilen metnin yerleştirileceği URL\'de %s kullanın.',
   labelPlaceholder: 'Ad (örn. Twitter)',
   urlPlaceholder: 'URL (örn. https://twitter.com/search?q=%s)',
+  iconPlaceholder: 'Simge (örn. 🔍)',
   addSite: 'Site ekle',
 
   backupRestore: 'Yedekleme ve geri yükleme',
@@ -960,6 +973,7 @@ const he: UiStrings = {
   addCustomSiteDesc: 'השתמשו ב-%s בכתובת ה-URL במקום שבו הטקסט המסומן צריך להופיע.',
   labelPlaceholder: '(Twitter .שם (לדוגמה',
   urlPlaceholder: '(https://twitter.com/search?q=%s .כתובת URL (לדוגמה',
+  iconPlaceholder: '(🔍 .אייקון (לדוגמה',
   addSite: 'הוספת אתר',
 
   backupRestore: 'גיבוי ושחזור',

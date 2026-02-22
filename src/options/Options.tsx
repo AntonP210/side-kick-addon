@@ -10,8 +10,8 @@ import './options.css';
 export function Options() {
   const [settings, setSettings] = useState<ExtensionSettings | null>(null);
   const [saved, setSaved] = useState(false);
-  const [newItem, setNewItem] = useState({ label: '', url: '', category: 'custom' as MenuItem['category'] });
-  const [newPrompt, setNewPrompt] = useState({ label: '', prompt: '', targetAi: 'chatgpt' });
+  const [newItem, setNewItem] = useState({ label: '', url: '', icon: '', category: 'custom' as MenuItem['category'] });
+  const [newPrompt, setNewPrompt] = useState({ label: '', prompt: '', icon: '', targetAi: 'chatgpt' });
   const [history, setHistory] = useState<HistoryEntry[]>([]);
 
   useEffect(() => {
@@ -80,10 +80,10 @@ export function Options() {
       url: newItem.url.trim(),
       category: 'custom',
       enabled: true,
-      icon: '🔗',
+      icon: newItem.icon.trim() || '🔗',
     };
     save({ ...settings, items: [...settings.items, item] });
-    setNewItem({ label: '', url: '', category: 'custom' });
+    setNewItem({ label: '', url: '', icon: '', category: 'custom' });
   };
 
   const AI_TARGETS = [
@@ -102,11 +102,11 @@ export function Options() {
       url: target.url,
       category: 'ai',
       enabled: true,
-      icon: '✨',
+      icon: newPrompt.icon.trim() || '✨',
       prompt: newPrompt.prompt.trim(),
     };
     save({ ...settings, items: [...settings.items, item] });
-    setNewPrompt({ label: '', prompt: '', targetAi: 'chatgpt' });
+    setNewPrompt({ label: '', prompt: '', icon: '', targetAi: 'chatgpt' });
   };
 
   const setTranslateLang = (lang: string) => {
@@ -342,13 +342,22 @@ export function Options() {
           )}
         </p>
         <div className="add-form">
-          <input
-            type="text"
-            placeholder={s.labelPlaceholder}
-            value={newItem.label}
-            onChange={(e) => setNewItem({ ...newItem, label: e.target.value })}
-            className="input"
-          />
+          <div className="add-form-row">
+            <input
+              type="text"
+              placeholder={s.iconPlaceholder}
+              value={newItem.icon}
+              onChange={(e) => setNewItem({ ...newItem, icon: e.target.value })}
+              className="input input-icon"
+            />
+            <input
+              type="text"
+              placeholder={s.labelPlaceholder}
+              value={newItem.label}
+              onChange={(e) => setNewItem({ ...newItem, label: e.target.value })}
+              className="input"
+            />
+          </div>
           <input
             type="text"
             placeholder={s.urlPlaceholder}
@@ -396,6 +405,13 @@ export function Options() {
             className="input"
           />
           <div className="add-form-row">
+            <input
+              type="text"
+              placeholder={s.iconPlaceholder}
+              value={newPrompt.icon}
+              onChange={(e) => setNewPrompt({ ...newPrompt, icon: e.target.value })}
+              className="input input-icon"
+            />
             <select
               className="prompt-select"
               value={newPrompt.targetAi}
