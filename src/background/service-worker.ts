@@ -1,7 +1,7 @@
 import browser from 'webextension-polyfill';
 import type { MenuItem } from '../shared/types';
 import { getSettings, onSettingsChanged, addHistoryEntry } from '../shared/storage';
-import { buildUrl } from '../shared/url';
+import { buildUrl, isSafeUrl } from '../shared/url';
 
 const PARENT_MENU_ID = 'smart-search';
 const READ_ALOUD_MENU_ID = 'read-aloud';
@@ -108,6 +108,7 @@ browser.contextMenus.onClicked.addListener(async (info, tab) => {
   if (!item) return;
 
   const url = buildUrl(item.url, info.selectionText, settings.translateLang, item.prompt);
+  if (!isSafeUrl(url)) return;
   await browser.tabs.create({ url });
 
   // Record in history
@@ -136,6 +137,7 @@ browser.runtime.onMessage.addListener(((message: any) => {
 
   if (msg.type === 'OPEN_URL') {
     const url = msg.url as string;
+    if (!isSafeUrl(url)) return;
     const text = msg.text as string | undefined;
     const itemId = msg.itemId as string | undefined;
     const itemLabel = msg.itemLabel as string | undefined;
