@@ -44,6 +44,40 @@ export interface UiStrings {
   catQuickJump: string;
   catAiSearch: string;
   catCustom: string;
+
+  // Pinned
+  pinned: string;
+  pin: string;
+  unpin: string;
+
+  // History
+  searchHistory: string;
+  searchHistoryDesc: string;
+  clearHistory: string;
+  clearHistoryConfirm: string;
+  noHistory: string;
+
+  // Floating Toolbar
+  floatingToolbar: string;
+  floatingToolbarDesc: string;
+
+  // Read Aloud
+  readAloud: string;
+
+  // Screenshot
+  screenshot: string;
+
+  // Custom AI Prompt
+  addCustomPrompt: string;
+  addCustomPromptDesc: string;
+  promptPlaceholder: string;
+  targetAi: string;
+  addPrompt: string;
+
+  // Rate & Share
+  enjoyingSidekick: string;
+  rateSidekick: string;
+  shareSidekick: string;
 }
 
 const en: UiStrings = {
@@ -88,6 +122,33 @@ const en: UiStrings = {
   catQuickJump: 'Quick Jump',
   catAiSearch: 'AI Search',
   catCustom: 'Custom',
+
+  pinned: 'Pinned',
+  pin: 'Pin to toolbar',
+  unpin: 'Unpin from toolbar',
+
+  searchHistory: 'Search History',
+  searchHistoryDesc: 'Recent searches performed via Sidekick.',
+  clearHistory: 'Clear History',
+  clearHistoryConfirm: 'Clear all search history? This cannot be undone.',
+  noHistory: 'No search history yet.',
+
+  floatingToolbar: 'Floating Toolbar',
+  floatingToolbarDesc: 'Show a floating toolbar with pinned items when you select text.',
+
+  readAloud: 'Read Aloud',
+  screenshot: 'Screenshot',
+
+  addCustomPrompt: 'Add Custom AI Prompt',
+  addCustomPromptDesc: 'Define a prompt template with %s for the selected text, then choose an AI to send it to.',
+  promptPlaceholder: 'Prompt (e.g. Summarize this: %s)',
+  targetAi: 'Target AI',
+  addPrompt: 'Add Prompt',
+
+  // Rate & Share
+  enjoyingSidekick: 'Enjoying Sidekick?',
+  rateSidekick: 'Rate',
+  shareSidekick: 'Share',
 };
 
 const es: UiStrings = {
@@ -132,6 +193,33 @@ const es: UiStrings = {
   catQuickJump: 'Acceso rápido',
   catAiSearch: 'Búsqueda IA',
   catCustom: 'Personalizado',
+
+  pinned: 'Fijado',
+  pin: 'Fijar a la barra',
+  unpin: 'Desfijar de la barra',
+
+  searchHistory: 'Historial de búsqueda',
+  searchHistoryDesc: 'Búsquedas recientes realizadas con Sidekick.',
+  clearHistory: 'Borrar historial',
+  clearHistoryConfirm: '¿Borrar todo el historial? No se puede deshacer.',
+  noHistory: 'Sin historial de búsqueda.',
+
+  floatingToolbar: 'Barra flotante',
+  floatingToolbarDesc: 'Mostrar una barra flotante con elementos fijados al seleccionar texto.',
+
+  readAloud: 'Leer en voz alta',
+  screenshot: 'Captura de pantalla',
+
+  addCustomPrompt: 'Añadir prompt de IA personalizado',
+  addCustomPromptDesc: 'Define una plantilla de prompt con %s para el texto seleccionado, luego elige una IA.',
+  promptPlaceholder: 'Prompt (ej. Resume esto: %s)',
+  targetAi: 'IA de destino',
+  addPrompt: 'Añadir prompt',
+
+  // Rate & Share
+  enjoyingSidekick: '¿Te gusta Sidekick?',
+  rateSidekick: 'Valorar',
+  shareSidekick: 'Compartir',
 };
 
 const fr: UiStrings = {
@@ -176,6 +264,33 @@ const fr: UiStrings = {
   catQuickJump: 'Accès rapide',
   catAiSearch: 'Recherche IA',
   catCustom: 'Personnalisé',
+
+  pinned: 'Épinglé',
+  pin: 'Épingler à la barre',
+  unpin: 'Détacher de la barre',
+
+  searchHistory: 'Historique de recherche',
+  searchHistoryDesc: 'Recherches récentes effectuées via Sidekick.',
+  clearHistory: 'Effacer l\'historique',
+  clearHistoryConfirm: 'Effacer tout l\'historique ? Cette action est irréversible.',
+  noHistory: 'Aucun historique de recherche.',
+
+  floatingToolbar: 'Barre flottante',
+  floatingToolbarDesc: 'Afficher une barre flottante avec les éléments épinglés lors de la sélection de texte.',
+
+  readAloud: 'Lire à voix haute',
+  screenshot: 'Capture d\'écran',
+
+  addCustomPrompt: 'Ajouter un prompt IA personnalisé',
+  addCustomPromptDesc: 'Définissez un modèle de prompt avec %s pour le texte sélectionné, puis choisissez une IA.',
+  promptPlaceholder: 'Prompt (ex. Résume ceci : %s)',
+  targetAi: 'IA cible',
+  addPrompt: 'Ajouter le prompt',
+
+  // Rate & Share
+  enjoyingSidekick: 'Vous aimez Sidekick ?',
+  rateSidekick: 'Noter',
+  shareSidekick: 'Partager',
 };
 
 const de: UiStrings = {
@@ -220,6 +335,33 @@ const de: UiStrings = {
   catQuickJump: 'Schnellzugriff',
   catAiSearch: 'KI-Suche',
   catCustom: 'Benutzerdefiniert',
+
+  pinned: 'Angeheftet',
+  pin: 'An Leiste anheften',
+  unpin: 'Von Leiste lösen',
+
+  searchHistory: 'Suchverlauf',
+  searchHistoryDesc: 'Letzte Suchanfragen über Sidekick.',
+  clearHistory: 'Verlauf löschen',
+  clearHistoryConfirm: 'Gesamten Verlauf löschen? Dies kann nicht rückgängig gemacht werden.',
+  noHistory: 'Noch kein Suchverlauf.',
+
+  floatingToolbar: 'Schwebendes Menü',
+  floatingToolbarDesc: 'Schwebendes Menü mit angehefteten Einträgen bei Textauswahl anzeigen.',
+
+  readAloud: 'Vorlesen',
+  screenshot: 'Bildschirmfoto',
+
+  addCustomPrompt: 'Eigenen KI-Prompt hinzufügen',
+  addCustomPromptDesc: 'Erstelle eine Prompt-Vorlage mit %s für den markierten Text und wähle eine KI.',
+  promptPlaceholder: 'Prompt (z.B. Fasse zusammen: %s)',
+  targetAi: 'Ziel-KI',
+  addPrompt: 'Prompt hinzufügen',
+
+  // Rate & Share
+  enjoyingSidekick: 'Gefällt dir Sidekick?',
+  rateSidekick: 'Bewerten',
+  shareSidekick: 'Teilen',
 };
 
 const ru: UiStrings = {
@@ -264,6 +406,33 @@ const ru: UiStrings = {
   catQuickJump: 'Быстрый переход',
   catAiSearch: 'ИИ-поиск',
   catCustom: 'Пользовательские',
+
+  pinned: 'Закреплено',
+  pin: 'Закрепить на панели',
+  unpin: 'Открепить от панели',
+
+  searchHistory: 'История поиска',
+  searchHistoryDesc: 'Недавние поисковые запросы через Sidekick.',
+  clearHistory: 'Очистить историю',
+  clearHistoryConfirm: 'Очистить всю историю? Это действие нельзя отменить.',
+  noHistory: 'История поиска пуста.',
+
+  floatingToolbar: 'Плавающая панель',
+  floatingToolbarDesc: 'Показывать плавающую панель с закреплёнными элементами при выделении текста.',
+
+  readAloud: 'Прочитать вслух',
+  screenshot: 'Снимок экрана',
+
+  addCustomPrompt: 'Добавить свой промпт для ИИ',
+  addCustomPromptDesc: 'Создайте шаблон промпта с %s для выделенного текста, затем выберите ИИ.',
+  promptPlaceholder: 'Промпт (напр. Резюмируй это: %s)',
+  targetAi: 'Целевой ИИ',
+  addPrompt: 'Добавить промпт',
+
+  // Rate & Share
+  enjoyingSidekick: 'Нравится Sidekick?',
+  rateSidekick: 'Оценить',
+  shareSidekick: 'Поделиться',
 };
 
 const ja: UiStrings = {
@@ -308,6 +477,33 @@ const ja: UiStrings = {
   catQuickJump: 'クイックジャンプ',
   catAiSearch: 'AI検索',
   catCustom: 'カスタム',
+
+  pinned: '固定済み',
+  pin: 'ツールバーに固定',
+  unpin: 'ツールバーから外す',
+
+  searchHistory: '検索履歴',
+  searchHistoryDesc: 'Sidekickでの最近の検索。',
+  clearHistory: '履歴を消去',
+  clearHistoryConfirm: 'すべての検索履歴を消去しますか？この操作は元に戻せません。',
+  noHistory: '検索履歴はまだありません。',
+
+  floatingToolbar: 'フローティングツールバー',
+  floatingToolbarDesc: 'テキスト選択時に固定アイテムのフローティングツールバーを表示します。',
+
+  readAloud: '読み上げ',
+  screenshot: 'スクリーンショット',
+
+  addCustomPrompt: 'カスタムAIプロンプトを追加',
+  addCustomPromptDesc: '選択テキスト用の%sを含むプロンプトテンプレートを定義し、AIを選択してください。',
+  promptPlaceholder: 'プロンプト（例：これを要約して: %s）',
+  targetAi: '対象AI',
+  addPrompt: 'プロンプトを追加',
+
+  // Rate & Share
+  enjoyingSidekick: 'Sidekickを気に入りましたか？',
+  rateSidekick: '評価',
+  shareSidekick: '共有',
 };
 
 const zhCN: UiStrings = {
@@ -352,6 +548,33 @@ const zhCN: UiStrings = {
   catQuickJump: '快捷跳转',
   catAiSearch: 'AI搜索',
   catCustom: '自定义',
+
+  pinned: '已固定',
+  pin: '固定到工具栏',
+  unpin: '从工具栏移除',
+
+  searchHistory: '搜索历史',
+  searchHistoryDesc: '通过Sidekick进行的最近搜索。',
+  clearHistory: '清除历史',
+  clearHistoryConfirm: '清除所有搜索历史？此操作无法撤销。',
+  noHistory: '暂无搜索历史。',
+
+  floatingToolbar: '浮动工具栏',
+  floatingToolbarDesc: '选择文本时显示带有固定项目的浮动工具栏。',
+
+  readAloud: '朗读',
+  screenshot: '截图',
+
+  addCustomPrompt: '添加自定义AI提示词',
+  addCustomPromptDesc: '定义一个包含%s的提示词模板用于选中文本，然后选择AI。',
+  promptPlaceholder: '提示词（例如 总结一下：%s）',
+  targetAi: '目标AI',
+  addPrompt: '添加提示词',
+
+  // Rate & Share
+  enjoyingSidekick: '喜欢 Sidekick 吗？',
+  rateSidekick: '评分',
+  shareSidekick: '分享',
 };
 
 const ko: UiStrings = {
@@ -396,6 +619,33 @@ const ko: UiStrings = {
   catQuickJump: '빠른 이동',
   catAiSearch: 'AI 검색',
   catCustom: '사용자 정의',
+
+  pinned: '고정됨',
+  pin: '툴바에 고정',
+  unpin: '툴바에서 해제',
+
+  searchHistory: '검색 기록',
+  searchHistoryDesc: 'Sidekick을 통한 최근 검색.',
+  clearHistory: '기록 삭제',
+  clearHistoryConfirm: '모든 검색 기록을 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다.',
+  noHistory: '검색 기록이 없습니다.',
+
+  floatingToolbar: '플로팅 툴바',
+  floatingToolbarDesc: '텍스트 선택 시 고정된 항목이 있는 플로팅 툴바를 표시합니다.',
+
+  readAloud: '소리내어 읽기',
+  screenshot: '스크린샷',
+
+  addCustomPrompt: '사용자 정의 AI 프롬프트 추가',
+  addCustomPromptDesc: '선택한 텍스트에 %s를 포함한 프롬프트 템플릿을 정의하고 AI를 선택하세요.',
+  promptPlaceholder: '프롬프트 (예: 이것을 요약해줘: %s)',
+  targetAi: '대상 AI',
+  addPrompt: '프롬프트 추가',
+
+  // Rate & Share
+  enjoyingSidekick: 'Sidekick이 마음에 드시나요?',
+  rateSidekick: '평가',
+  shareSidekick: '공유',
 };
 
 const ar: UiStrings = {
@@ -440,6 +690,33 @@ const ar: UiStrings = {
   catQuickJump: 'وصول سريع',
   catAiSearch: 'بحث بالذكاء الاصطناعي',
   catCustom: 'مخصص',
+
+  pinned: 'مثبّت',
+  pin: 'تثبيت في الشريط',
+  unpin: 'إزالة من الشريط',
+
+  searchHistory: 'سجل البحث',
+  searchHistoryDesc: 'عمليات البحث الأخيرة عبر Sidekick.',
+  clearHistory: 'مسح السجل',
+  clearHistoryConfirm: 'مسح كل سجل البحث؟ لا يمكن التراجع عن هذا.',
+  noHistory: 'لا يوجد سجل بحث بعد.',
+
+  floatingToolbar: 'شريط أدوات عائم',
+  floatingToolbarDesc: 'عرض شريط أدوات عائم بالعناصر المثبتة عند تحديد النص.',
+
+  readAloud: 'قراءة بصوت عالٍ',
+  screenshot: 'لقطة شاشة',
+
+  addCustomPrompt: 'إضافة أمر ذكاء اصطناعي مخصص',
+  addCustomPromptDesc: 'حدد قالب أمر يحتوي على %s للنص المحدد، ثم اختر الذكاء الاصطناعي.',
+  promptPlaceholder: 'الأمر (مثال: لخص هذا: %s)',
+  targetAi: 'الذكاء الاصطناعي المستهدف',
+  addPrompt: 'إضافة أمر',
+
+  // Rate & Share
+  enjoyingSidekick: 'هل تستمتع بـ Sidekick؟',
+  rateSidekick: 'تقييم',
+  shareSidekick: 'مشاركة',
 };
 
 const pt: UiStrings = {
@@ -484,6 +761,33 @@ const pt: UiStrings = {
   catQuickJump: 'Acesso rápido',
   catAiSearch: 'Pesquisa IA',
   catCustom: 'Personalizado',
+
+  pinned: 'Fixado',
+  pin: 'Fixar na barra',
+  unpin: 'Desafixar da barra',
+
+  searchHistory: 'Histórico de pesquisa',
+  searchHistoryDesc: 'Pesquisas recentes realizadas via Sidekick.',
+  clearHistory: 'Limpar histórico',
+  clearHistoryConfirm: 'Limpar todo o histórico? Isso não pode ser desfeito.',
+  noHistory: 'Nenhum histórico de pesquisa.',
+
+  floatingToolbar: 'Barra flutuante',
+  floatingToolbarDesc: 'Mostrar barra flutuante com itens fixados ao selecionar texto.',
+
+  readAloud: 'Ler em voz alta',
+  screenshot: 'Captura de tela',
+
+  addCustomPrompt: 'Adicionar prompt de IA personalizado',
+  addCustomPromptDesc: 'Defina um modelo de prompt com %s para o texto selecionado, depois escolha uma IA.',
+  promptPlaceholder: 'Prompt (ex. Resuma isto: %s)',
+  targetAi: 'IA alvo',
+  addPrompt: 'Adicionar prompt',
+
+  // Rate & Share
+  enjoyingSidekick: 'Gostando do Sidekick?',
+  rateSidekick: 'Avaliar',
+  shareSidekick: 'Compartilhar',
 };
 
 const uk: UiStrings = {
@@ -528,6 +832,33 @@ const uk: UiStrings = {
   catQuickJump: 'Швидкий перехід',
   catAiSearch: 'ШІ-пошук',
   catCustom: 'Користувацькі',
+
+  pinned: 'Закріплено',
+  pin: 'Закріпити на панелі',
+  unpin: 'Відкріпити від панелі',
+
+  searchHistory: 'Історія пошуку',
+  searchHistoryDesc: 'Нещодавні пошукові запити через Sidekick.',
+  clearHistory: 'Очистити історію',
+  clearHistoryConfirm: 'Очистити всю історію? Цю дію не можна скасувати.',
+  noHistory: 'Історія пошуку порожня.',
+
+  floatingToolbar: 'Плаваюча панель',
+  floatingToolbarDesc: 'Показувати плаваючу панель із закріпленими елементами при виділенні тексту.',
+
+  readAloud: 'Прочитати вголос',
+  screenshot: 'Знімок екрана',
+
+  addCustomPrompt: 'Додати власний промпт для ШІ',
+  addCustomPromptDesc: 'Створіть шаблон промпту з %s для виділеного тексту, потім оберіть ШІ.',
+  promptPlaceholder: 'Промпт (напр. Підсумуй це: %s)',
+  targetAi: 'Цільовий ШІ',
+  addPrompt: 'Додати промпт',
+
+  // Rate & Share
+  enjoyingSidekick: 'Подобається Sidekick?',
+  rateSidekick: 'Оцінити',
+  shareSidekick: 'Поділитися',
 };
 
 const tr: UiStrings = {
@@ -572,6 +903,33 @@ const tr: UiStrings = {
   catQuickJump: 'Hızlı erişim',
   catAiSearch: 'Yapay Zeka Arama',
   catCustom: 'Özel',
+
+  pinned: 'Sabitlendi',
+  pin: 'Araç çubuğuna sabitle',
+  unpin: 'Araç çubuğundan kaldır',
+
+  searchHistory: 'Arama geçmişi',
+  searchHistoryDesc: 'Sidekick ile yapılan son aramalar.',
+  clearHistory: 'Geçmişi temizle',
+  clearHistoryConfirm: 'Tüm arama geçmişi silinsin mi? Bu işlem geri alınamaz.',
+  noHistory: 'Henüz arama geçmişi yok.',
+
+  floatingToolbar: 'Kayan araç çubuğu',
+  floatingToolbarDesc: 'Metin seçildiğinde sabitlenmiş öğelerle kayan araç çubuğu göster.',
+
+  readAloud: 'Sesli oku',
+  screenshot: 'Ekran görüntüsü',
+
+  addCustomPrompt: 'Özel AI promptu ekle',
+  addCustomPromptDesc: 'Seçili metin için %s içeren bir prompt şablonu tanımlayın, sonra bir AI seçin.',
+  promptPlaceholder: 'Prompt (örn. Bunu özetle: %s)',
+  targetAi: 'Hedef AI',
+  addPrompt: 'Prompt ekle',
+
+  // Rate & Share
+  enjoyingSidekick: 'Sidekick\'i beğendiniz mi?',
+  rateSidekick: 'Değerlendir',
+  shareSidekick: 'Paylaş',
 };
 
 const he: UiStrings = {
@@ -616,6 +974,33 @@ const he: UiStrings = {
   catQuickJump: 'גישה מהירה',
   catAiSearch: 'חיפוש AI',
   catCustom: 'מותאם אישית',
+
+  pinned: 'מוצמד',
+  pin: 'הצמד לסרגל',
+  unpin: 'הסר מהסרגל',
+
+  searchHistory: 'היסטוריית חיפוש',
+  searchHistoryDesc: '.חיפושים אחרונים שבוצעו דרך Sidekick',
+  clearHistory: 'נקה היסטוריה',
+  clearHistoryConfirm: 'לנקות את כל היסטוריית החיפוש? לא ניתן לבטל פעולה זו.',
+  noHistory: '.אין היסטוריית חיפוש עדיין',
+
+  floatingToolbar: 'סרגל כלים צף',
+  floatingToolbarDesc: '.הצג סרגל כלים צף עם פריטים מוצמדים בעת בחירת טקסט',
+
+  readAloud: 'הקראה בקול',
+  screenshot: 'צילום מסך',
+
+  addCustomPrompt: 'הוספת פרומפט AI מותאם אישית',
+  addCustomPromptDesc: 'הגדירו תבנית פרומפט עם %s עבור הטקסט המסומן, ובחרו AI.',
+  promptPlaceholder: '(פרומפט (לדוגמה: סכם את זה: %s',
+  targetAi: 'AI יעד',
+  addPrompt: 'הוספת פרומפט',
+
+  // Rate & Share
+  enjoyingSidekick: '?נהנים מ-Sidekick',
+  rateSidekick: 'דירוג',
+  shareSidekick: 'שיתוף',
 };
 
 export const TRANSLATIONS: Record<string, UiStrings> = {

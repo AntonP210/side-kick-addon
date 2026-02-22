@@ -1,24 +1,36 @@
 import { useEffect, useState } from 'react';
 import browser from 'webextension-polyfill';
 import type { Theme } from '../shared/types';
-import { getSettings, saveSettings } from '../shared/storage';
+import { getSettings, saveSettings, getHistory, isRatePromptDismissed, dismissRatePrompt } from '../shared/storage';
 import { t } from '../shared/i18n';
 import { useTheme } from '../shared/useTheme';
 import './popup.css';
+
+const CHROME_STORE_URL = 'https://chromewebstore.google.com/detail/onfpchpdghdfpdhogboobpbdpjpkpifn';
+const FIREFOX_STORE_URL = 'https://addons.mozilla.org/firefox/addon/sidekick-search';
+const STORE_URL = browser.runtime.getURL('').startsWith('moz-extension://')
+  ? FIREFOX_STORE_URL
+  : CHROME_STORE_URL;
 
 export function Popup() {
   const [enabled, setEnabled] = useState(true);
   const [uiLang, setUiLang] = useState('en');
   const [theme, setThemeState] = useState<Theme>('system');
   const [loading, setLoading] = useState(true);
+  const [showRatePrompt, setShowRatePrompt] = useState(false);
 
   useEffect(() => {
-    getSettings().then((settings) => {
-      setEnabled(settings.enabled);
-      setUiLang(settings.uiLang);
-      setThemeState(settings.theme);
-      setLoading(false);
-    });
+    Promise.all([getSettings(), isRatePromptDismissed(), getHistory()]).then(
+      ([settings, dismissed, history]) => {
+        setEnabled(settings.enabled);
+        setUiLang(settings.uiLang);
+        setThemeState(settings.theme);
+        if (!dismissed && history.length >= 10) {
+          setShowRatePrompt(true);
+        }
+        setLoading(false);
+      },
+    );
   }, []);
 
   useTheme(theme);
@@ -74,6 +86,40 @@ export function Popup() {
           {s.settings}
         </button>
       </div>
+
+      {showRatePrompt && (
+        <div className="rate-row">
+          <span className="rate-text">{s.enjoyingSidekick}</span>
+          <a
+            className="rate-btn"
+            href={STORE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            title={s.rateSidekick}
+          >
+            ⭐
+          </a>
+          <a
+            className="rate-btn"
+            href={STORE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            title={s.shareSidekick}
+          >
+            🔗
+          </a>
+          <button
+            className="rate-btn rate-dismiss"
+            onClick={() => {
+              dismissRatePrompt();
+              setShowRatePrompt(false);
+            }}
+            aria-label="Dismiss"
+          >
+            ✕
+          </button>
+        </div>
+      )}
     </div>
   );
 }

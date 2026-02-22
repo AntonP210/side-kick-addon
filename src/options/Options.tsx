@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import type { MenuItem, ExtensionSettings, Theme } from '../shared/types';
-import { getSettings, saveSettings } from '../shared/storage';
+import type { MenuItem, ExtensionSettings, Theme, HistoryEntry } from '../shared/types';
+import { getSettings, saveSettings, getHistory, clearHistory as clearHistoryStorage } from '../shared/storage';
 import { LANGUAGES, DEFAULT_SETTINGS } from '../shared/defaults';
 import { t, getCategoryLabel, UI_LANGUAGES } from '../shared/i18n';
 import { useTheme } from '../shared/useTheme';
@@ -10,9 +10,17 @@ export function Options() {
   const [settings, setSettings] = useState<ExtensionSettings | null>(null);
   const [saved, setSaved] = useState(false);
   const [newItem, setNewItem] = useState({ label: '', url: '', category: 'custom' as MenuItem['category'] });
+  const [newPrompt, setNewPrompt] = useState({ label: '', prompt: '', targetAi: 'chatgpt' });
+  const [history, setHistory] = useState<HistoryEntry[]>([]);
 
   useEffect(() => {
     getSettings().then(setSettings);
+    getHistory().then(setHistory);
+
+    // Refresh history when the options page regains focus
+    const onFocus = () => { getHistory().then(setHistory); };
+    window.addEventListener('focus', onFocus);
+    return () => window.removeEventListener('focus', onFocus);
   }, []);
 
   useTheme(settings?.theme ?? 'system');
@@ -30,6 +38,14 @@ export function Options() {
     if (!settings) return;
     const items = settings.items.map((item) =>
       item.id === id ? { ...item, enabled: !item.enabled } : item,
+    );
+    save({ ...settings, items });
+  };
+
+  const togglePin = (id: string) => {
+    if (!settings) return;
+    const items = settings.items.map((item) =>
+      item.id === id ? { ...item, pinned: !item.pinned } : item,
     );
     save({ ...settings, items });
   };
@@ -65,6 +81,29 @@ export function Options() {
     setNewItem({ label: '', url: '', category: 'custom' });
   };
 
+  const AI_TARGETS = [
+    { id: 'chatgpt', label: 'ChatGPT', url: 'https://chatgpt.com/?q=%s' },
+    { id: 'claude', label: 'Claude', url: 'https://claude.ai/new?q=%s' },
+    { id: 'perplexity', label: 'Perplexity', url: 'https://www.perplexity.ai/search?q=%s' },
+  ];
+
+  const addCustomPrompt = () => {
+    if (!settings || !newPrompt.label.trim() || !newPrompt.prompt.trim()) return;
+    const target = AI_TARGETS.find((t) => t.id === newPrompt.targetAi) ?? AI_TARGETS[0];
+    const id = `prompt-${Date.now()}`;
+    const item: MenuItem = {
+      id,
+      label: newPrompt.label.trim(),
+      url: target.url,
+      category: 'ai',
+      enabled: true,
+      icon: '✨',
+      prompt: newPrompt.prompt.trim(),
+    };
+    save({ ...settings, items: [...settings.items, item] });
+    setNewPrompt({ label: '', prompt: '', targetAi: 'chatgpt' });
+  };
+
   const setTranslateLang = (lang: string) => {
     if (!settings) return;
     save({ ...settings, translateLang: lang });
@@ -78,6 +117,13 @@ export function Options() {
   const setTheme = (theme: Theme) => {
     if (!settings) return;
     save({ ...settings, theme });
+  };
+
+  const handleClearHistory = async () => {
+    if (confirm(s.clearHistoryConfirm)) {
+      await clearHistoryStorage();
+      setHistory([]);
+    }
   };
 
   const exportSettings = () => {
@@ -197,6 +243,20 @@ export function Options() {
         </div>
       </section>
 
+      {/* Floating Toolbar */}
+      <section className="section">
+        <h2>{s.floatingToolbar}</h2>
+        <p className="section-desc">{s.floatingToolbarDesc}</p>
+        <div className="toggle-row-options">
+          <button
+            className={`btn-toggle ${settings.floatingToolbar !== false ? 'on' : 'off'}`}
+            onClick={() => save({ ...settings, floatingToolbar: settings.floatingToolbar === false })}
+          >
+            {settings.floatingToolbar !== false ? 'ON' : 'OFF'}
+          </button>
+        </div>
+      </section>
+
       {/* Menu items */}
       <section className="section">
         <h2>{s.menuItems}</h2>
@@ -217,6 +277,13 @@ export function Options() {
                   </div>
                   <div className="item-actions">
                     <button
+                      className={`btn-icon btn-pin ${item.pinned ? 'pinned' : ''}`}
+                      onClick={() => togglePin(item.id)}
+                      title={item.pinned ? s.unpin : s.pin}
+                    >
+                      📌
+                    </button>
+                    <button
                       className="btn-icon"
                       onClick={() => moveItem(item.id, -1)}
                       title="Move up"
@@ -236,7 +303,7 @@ export function Options() {
                     >
                       {item.enabled ? 'ON' : 'OFF'}
                     </button>
-                    {item.category === 'custom' && (
+                    {(item.category === 'custom' || item.prompt) && (
                       <button
                         className="btn-icon btn-delete"
                         onClick={() => removeItem(item.id)}
@@ -280,14 +347,89 @@ export function Options() {
             onChange={(e) => setNewItem({ ...newItem, url: e.target.value })}
             className="input"
           />
-          <button
-            className="btn-primary"
-            onClick={addCustomItem}
-            disabled={!newItem.label.trim() || !newItem.url.trim()}
-          >
-            {s.addSite}
-          </button>
+          <div className="add-form-row">
+            <button
+              className="btn-primary"
+              onClick={addCustomItem}
+              disabled={!newItem.label.trim() || !newItem.url.trim()}
+            >
+              {s.addSite}
+            </button>
+          </div>
         </div>
+      </section>
+
+      {/* Add Custom AI Prompt */}
+      <section className="section">
+        <h2>{s.addCustomPrompt}</h2>
+        <p className="section-desc">
+          {s.addCustomPromptDesc.split('%s').map((part, i, arr) =>
+            i < arr.length - 1 ? (
+              <span key={i}>{part}<code>%s</code></span>
+            ) : (
+              <span key={i}>{part}</span>
+            ),
+          )}
+        </p>
+        <div className="add-form">
+          <input
+            type="text"
+            placeholder={s.labelPlaceholder}
+            value={newPrompt.label}
+            onChange={(e) => setNewPrompt({ ...newPrompt, label: e.target.value })}
+            className="input"
+          />
+          <input
+            type="text"
+            placeholder={s.promptPlaceholder}
+            value={newPrompt.prompt}
+            onChange={(e) => setNewPrompt({ ...newPrompt, prompt: e.target.value })}
+            className="input"
+          />
+          <div className="add-form-row">
+            <select
+              className="prompt-select"
+              value={newPrompt.targetAi}
+              onChange={(e) => setNewPrompt({ ...newPrompt, targetAi: e.target.value })}
+            >
+              {AI_TARGETS.map((ai) => (
+                <option key={ai.id} value={ai.id}>{ai.label}</option>
+              ))}
+            </select>
+            <button
+              className="btn-primary"
+              onClick={addCustomPrompt}
+              disabled={!newPrompt.label.trim() || !newPrompt.prompt.trim()}
+            >
+              {s.addPrompt}
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Search History */}
+      <section className="section">
+        <h2>{s.searchHistory}</h2>
+        <p className="section-desc">{s.searchHistoryDesc}</p>
+        {history.length === 0 ? (
+          <p className="no-history">{s.noHistory}</p>
+        ) : (
+          <>
+            <div className="history-list">
+              {history.map((entry) => (
+                <div key={entry.id} className="history-item">
+                  <span className="history-text">{entry.text}</span>
+                  <span className="history-meta">
+                    {entry.itemLabel} &middot; {new Date(entry.timestamp).toLocaleString()}
+                  </span>
+                </div>
+              ))}
+            </div>
+            <button className="btn-danger history-clear-btn" onClick={handleClearHistory}>
+              {s.clearHistory}
+            </button>
+          </>
+        )}
       </section>
 
       {/* Import / Export */}

@@ -345,8 +345,13 @@ body {
 /* Add form */
 .add-form {
   display: flex;
+  flex-direction: column;
   gap: 8px;
-  flex-wrap: wrap;
+}
+
+.add-form-row {
+  display: flex;
+  gap: 8px;
 }
 
 .input {
@@ -354,8 +359,7 @@ body {
   border: 1px solid var(--border);
   border-radius: 6px;
   font-size: 14px;
-  flex: 1;
-  min-width: 180px;
+  width: 100%;
   background: var(--input-bg);
   color: var(--text);
 }
@@ -422,4 +426,84 @@ body {
 
 .btn-danger:hover {
   background: var(--danger-bg-hover);
+}
+
+/* Toggle row in options */
+.toggle-row-options {
+  margin-top: 4px;
+}
+
+/* Pin button */
+.btn-pin {
+  opacity: 0.3;
+  font-size: 12px;
+}
+
+.btn-pin:hover {
+  opacity: 0.7;
+}
+
+.btn-pin.pinned {
+  opacity: 1;
+  border-color: var(--accent);
+}
+
+/* History */
+.history-list {
+  max-height: 300px;
+  overflow-y: auto;
+  margin-bottom: 12px;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+}
+
+.history-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.history-item:last-child {
+  border-bottom: none;
+}
+
+.history-text {
+  font-size: 14px;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+  min-width: 0;
+}
+
+.history-meta {
+  font-size: 11px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  margin-left: 12px;
+  flex-shrink: 0;
+}
+
+.history-clear-btn {
+  margin-top: 4px;
+}
+
+/* Prompt select */
+.prompt-select {
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 14px;
+  background: var(--input-bg);
+  color: var(--text);
+  min-width: 140px;
+}
+
+.no-history {
+  font-size: 13px;
+  color: var(--text-muted);
+  font-style: italic;
 }

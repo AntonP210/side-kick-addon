@@ -9,6 +9,7 @@ export const DEFAULT_ITEMS: MenuItem[] = [
     category: 'search',
     enabled: false,
     icon: '🔍',
+    pinned: true,
   },
   {
     id: 'bing',
@@ -35,6 +36,7 @@ export const DEFAULT_ITEMS: MenuItem[] = [
     category: 'translate',
     enabled: true,
     icon: '🌐',
+    pinned: true,
   },
 
   // Quick jump sites
@@ -87,6 +89,22 @@ export const DEFAULT_ITEMS: MenuItem[] = [
     icon: '🐙',
   },
   {
+    id: 'imdb',
+    label: 'IMDB',
+    url: 'https://www.imdb.com/find/?q=%s',
+    category: 'quickjump',
+    enabled: false,
+    icon: '🎬',
+  },
+  {
+    id: 'morfix',
+    label: 'Morfix',
+    url: 'https://www.morfix.co.il/%s',
+    category: 'quickjump',
+    enabled: false,
+    icon: '📗',
+  },
+  {
     id: 'ebay',
     label: 'eBay',
     url: 'https://www.ebay.com/sch/i.html?_nkw=%s',
@@ -136,6 +154,14 @@ export const DEFAULT_ITEMS: MenuItem[] = [
     enabled: true,
     icon: '🧠',
   },
+  {
+    id: 'gemini',
+    label: 'Gemini',
+    url: 'https://gemini.google.com/app?q=%s',
+    category: 'ai',
+    enabled: true,
+    icon: '💎',
+  },
 ];
 
 export const DEFAULT_SETTINGS: ExtensionSettings = {
@@ -144,6 +170,7 @@ export const DEFAULT_SETTINGS: ExtensionSettings = {
   translateLang: 'en',
   uiLang: 'en',
   theme: 'system',
+  floatingToolbar: true,
 };
 
 export const CATEGORY_LABELS: Record<MenuItem['category'], string> = {
