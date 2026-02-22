@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import type { MenuItem, ExtensionSettings, Theme, HistoryEntry } from '../shared/types';
 import { getSettings, saveSettings, getHistory, clearHistory as clearHistoryStorage } from '../shared/storage';
+import { isSafeUrlTemplate } from '../shared/url';
 import { LANGUAGES, DEFAULT_SETTINGS } from '../shared/defaults';
 import { t, getCategoryLabel, UI_LANGUAGES } from '../shared/i18n';
 import { useTheme } from '../shared/useTheme';
@@ -68,6 +69,10 @@ export function Options() {
 
   const addCustomItem = () => {
     if (!settings || !newItem.label.trim() || !newItem.url.trim()) return;
+    if (!isSafeUrlTemplate(newItem.url.trim())) {
+      alert(s.invalidUrl ?? 'URL must start with https:// or http://');
+      return;
+    }
     const id = `custom-${Date.now()}`;
     const item: MenuItem = {
       id,
@@ -148,6 +153,10 @@ export function Options() {
         const text = await file.text();
         const imported = JSON.parse(text) as ExtensionSettings;
         if (imported.items && Array.isArray(imported.items)) {
+          // Sanitize: keep only items with safe URL templates
+          imported.items = imported.items.filter(
+            (item) => typeof item.url === 'string' && isSafeUrlTemplate(item.url),
+          );
           save(imported);
         }
       } catch {
