@@ -64,6 +64,11 @@ describe('DEFAULT_ITEMS', () => {
     expect(quickjumpIds).toContain('iherb');
   });
 
+  it('should have affiliate tags in Amazon URL', () => {
+    const amazon = DEFAULT_ITEMS.find((i) => i.id === 'amazon');
+    expect(amazon!.url).toContain('tag=');
+  });
+
   it('should not include Stack Overflow', () => {
     const ids = DEFAULT_ITEMS.map((item) => item.id);
     expect(ids).not.toContain('stackoverflow');
@@ -124,6 +129,18 @@ describe('DEFAULT_SETTINGS', () => {
 
   it('should contain all default items', () => {
     expect(DEFAULT_SETTINGS.items).toBe(DEFAULT_ITEMS);
+  });
+
+  it('should default showTranslateReadButton to true', () => {
+    expect(DEFAULT_SETTINGS.showTranslateReadButton).toBe(true);
+  });
+
+  it('should default affiliateEnabled to true', () => {
+    expect(DEFAULT_SETTINGS.affiliateEnabled).toBe(true);
+  });
+
+  it('should default floatingToolbar to true', () => {
+    expect(DEFAULT_SETTINGS.floatingToolbar).toBe(true);
   });
 });
 

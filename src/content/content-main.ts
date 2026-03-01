@@ -48,16 +48,33 @@ async function showToolbar() {
     const sel = window.getSelection();
     if (!sel || sel.isCollapsed || !sel.toString().trim()) return;
 
-    getToolbar().show(items, text, rect, translateLang, onOpenUrl, () => screenshotTool.start());
+    const showTranslateRead = (response.showTranslateReadButton ?? true) as boolean;
+    const affiliateEnabled = (response.affiliateEnabled ?? true) as boolean;
+    getToolbar().show(items, text, rect, translateLang, onOpenUrl, () => screenshotTool.start(), showTranslateRead, affiliateEnabled);
   } catch {
     // Extension context may be invalidated
   }
+}
+
+// Check if the selection is inside an editable element
+function isSelectionInEditable(): boolean {
+  const selection = window.getSelection();
+  if (!selection || !selection.anchorNode) return false;
+  const node = selection.anchorNode;
+  const el = node.nodeType === Node.ELEMENT_NODE ? node as Element : node.parentElement;
+  if (!el) return false;
+  if (el.closest('input, textarea')) return true;
+  if (el.closest('[contenteditable="true"]') || (el instanceof HTMLElement && el.isContentEditable)) return true;
+  return false;
 }
 
 // Show toolbar on text selection
 document.addEventListener('mouseup', (e) => {
   // Ignore clicks inside the toolbar host element
   if ((e.target as Element)?.closest?.('sidekick-toolbar')) return;
+
+  // Don't show toolbar when selecting in editable fields
+  if (isSelectionInEditable()) return;
 
   if (debounceTimer) clearTimeout(debounceTimer);
   debounceTimer = setTimeout(() => showToolbar(), 150);

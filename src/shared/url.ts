@@ -1,8 +1,28 @@
-export function buildUrl(template: string, text: string, translateLang: string, prompt?: string): string {
+/** Affiliate parameter keys to strip when affiliates are disabled. */
+/** Affiliate parameter keys to strip when affiliates are disabled. */
+const AFFILIATE_PARAMS = new Set([
+  'tag', // Amazon
+]);
+
+export function buildUrl(template: string, text: string, translateLang: string, prompt?: string, affiliateEnabled = true): string {
   const query = prompt ? prompt.replace('%s', text) : text;
-  return template
+  let url = template
     .replace('%s', encodeURIComponent(query))
     .replace('%lang%', encodeURIComponent(translateLang));
+
+  if (!affiliateEnabled) {
+    try {
+      const parsed = new URL(url);
+      for (const key of [...parsed.searchParams.keys()]) {
+        if (AFFILIATE_PARAMS.has(key)) parsed.searchParams.delete(key);
+      }
+      url = parsed.toString();
+    } catch {
+      // If URL can't be parsed, return as-is
+    }
+  }
+
+  return url;
 }
 
 /** Returns true only for http and https URLs. Rejects javascript:, file:, data:, etc. */

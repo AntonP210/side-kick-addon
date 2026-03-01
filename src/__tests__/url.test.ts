@@ -61,3 +61,27 @@ describe('buildUrl', () => {
     }
   });
 });
+
+describe('buildUrl affiliate stripping', () => {
+  it('should keep affiliate params when affiliateEnabled is true', () => {
+    const result = buildUrl('https://www.amazon.com/s?k=%s&tag=sidekick0e-20', 'test', 'en', undefined, true);
+    expect(result).toContain('tag=sidekick0e-20');
+  });
+
+  it('should keep affiliate params by default (no arg)', () => {
+    const result = buildUrl('https://www.amazon.com/s?k=%s&tag=sidekick0e-20', 'test', 'en');
+    expect(result).toContain('tag=sidekick0e-20');
+  });
+
+  it('should strip Amazon affiliate tag when affiliateEnabled is false', () => {
+    const result = buildUrl('https://www.amazon.com/s?k=%s&tag=sidekick0e-20', 'test', 'en', undefined, false);
+    expect(result).not.toContain('tag=');
+    expect(result).toContain('k=test');
+  });
+
+  it('should not strip non-affiliate params when affiliateEnabled is false', () => {
+    const result = buildUrl('https://www.google.com/search?q=%s&hl=en', 'test', 'en', undefined, false);
+    expect(result).toContain('q=test');
+    expect(result).toContain('hl=en');
+  });
+});

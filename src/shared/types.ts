@@ -26,4 +26,6 @@ export interface ExtensionSettings {
   uiLang: string;
   theme: Theme;
   floatingToolbar?: boolean;
+  showTranslateReadButton?: boolean;
+  affiliateEnabled?: boolean;
 }

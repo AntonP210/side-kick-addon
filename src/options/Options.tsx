@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import type { MenuItem, ExtensionSettings, Theme, HistoryEntry } from '../shared/types';
-import { getSettings, saveSettings, getHistory, clearHistory as clearHistoryStorage } from '../shared/storage';
+import { getSettings, saveSettings, getHistory, clearHistory as clearHistoryStorage, isAffiliateBannerDismissed, dismissAffiliateBanner } from '../shared/storage';
 import { isSafeUrlTemplate } from '../shared/url';
 import { LANGUAGES, DEFAULT_SETTINGS } from '../shared/defaults';
 import { t, getCategoryLabel, UI_LANGUAGES } from '../shared/i18n';
@@ -13,10 +13,12 @@ export function Options() {
   const [newItem, setNewItem] = useState({ label: '', url: '', icon: '', category: 'custom' as MenuItem['category'] });
   const [newPrompt, setNewPrompt] = useState({ label: '', prompt: '', icon: '', targetAi: 'chatgpt' });
   const [history, setHistory] = useState<HistoryEntry[]>([]);
+  const [showAffiliateBanner, setShowAffiliateBanner] = useState(false);
 
   useEffect(() => {
     getSettings().then(setSettings);
     getHistory().then(setHistory);
+    isAffiliateBannerDismissed().then((dismissed) => setShowAffiliateBanner(!dismissed));
 
     // Refresh history when the options page regains focus
     const onFocus = () => { getHistory().then(setHistory); };
@@ -262,6 +264,43 @@ export function Options() {
             onClick={() => save({ ...settings, floatingToolbar: settings.floatingToolbar === false })}
           >
             {settings.floatingToolbar !== false ? 'ON' : 'OFF'}
+          </button>
+        </div>
+      </section>
+
+      {/* Translate Read Aloud */}
+      <section className="section">
+        <h2>{s.translateRead}</h2>
+        <p className="section-desc">{s.translateReadDesc}</p>
+        <div className="toggle-row-options">
+          <button
+            className={`btn-toggle ${settings.showTranslateReadButton !== false ? 'on' : 'off'}`}
+            onClick={() => save({ ...settings, showTranslateReadButton: settings.showTranslateReadButton === false })}
+          >
+            {settings.showTranslateReadButton !== false ? 'ON' : 'OFF'}
+          </button>
+        </div>
+      </section>
+
+      {/* Affiliate Links */}
+      <section className="section">
+        <h2>{s.affiliateLinks}</h2>
+        {showAffiliateBanner ? (
+          <div className="info-banner">
+            <p>{s.affiliateBanner}</p>
+            <button className="btn-secondary" onClick={() => { dismissAffiliateBanner(); setShowAffiliateBanner(false); }}>
+              OK
+            </button>
+          </div>
+        ) : (
+          <p className="section-desc">{s.affiliateLinksDesc}</p>
+        )}
+        <div className="toggle-row-options">
+          <button
+            className={`btn-toggle ${settings.affiliateEnabled !== false ? 'on' : 'off'}`}
+            onClick={() => save({ ...settings, affiliateEnabled: settings.affiliateEnabled === false })}
+          >
+            {settings.affiliateEnabled !== false ? 'ON' : 'OFF'}
           </button>
         </div>
       </section>

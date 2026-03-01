@@ -76,3 +76,16 @@ export async function isRatePromptDismissed(): Promise<boolean> {
 export async function dismissRatePrompt(): Promise<void> {
   await browser.storage.local.set({ [RATE_DISMISSED_KEY]: true });
 }
+
+// Affiliate banner
+
+const AFFILIATE_BANNER_DISMISSED_KEY = 'affiliateBannerDismissed';
+
+export async function isAffiliateBannerDismissed(): Promise<boolean> {
+  const result = await browser.storage.local.get(AFFILIATE_BANNER_DISMISSED_KEY);
+  return result[AFFILIATE_BANNER_DISMISSED_KEY] === true;
+}
+
+export async function dismissAffiliateBanner(): Promise<void> {
+  await browser.storage.local.set({ [AFFILIATE_BANNER_DISMISSED_KEY]: true });
+}

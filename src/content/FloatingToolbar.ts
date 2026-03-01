@@ -1,6 +1,8 @@
 import type { MenuItem } from '../shared/types';
 import { TOOLBAR_CSS } from './toolbar-styles';
 
+const AFFILIATE_PARAMS = new Set(['tag']);
+
 export class FloatingToolbar {
   private shadow: ShadowRoot;
   private host: HTMLElement;
@@ -8,6 +10,7 @@ export class FloatingToolbar {
   private speaking = false;
   private utterance: SpeechSynthesisUtterance | null = null;
   private onScreenshot: (() => void) | null = null;
+  private onSpeechEnd: (() => void) | null = null;
 
   constructor() {
     this.host = document.createElement('sidekick-toolbar');
@@ -31,6 +34,8 @@ export class FloatingToolbar {
     translateLang: string,
     onOpenUrl: (url: string, text: string, itemId: string, itemLabel: string) => void,
     onScreenshot: () => void,
+    showTranslateReadButton = true,
+    affiliateEnabled = true,
   ) {
     this.onScreenshot = onScreenshot;
     this.toolbar.innerHTML = '';
@@ -40,13 +45,22 @@ export class FloatingToolbar {
       const btn = document.createElement('button');
       btn.className = 'sk-btn';
       btn.textContent = item.icon ?? '🔗';
-      btn.setAttribute('title', item.label);
+      btn.setAttribute('data-tooltip', item.label);
       btn.addEventListener('click', (e) => {
         e.stopPropagation();
         const query = item.prompt ? item.prompt.replace('%s', selectionText) : selectionText;
-        const url = item.url
+        let url = item.url
           .replace('%s', encodeURIComponent(query))
           .replace('%lang%', encodeURIComponent(translateLang));
+        if (!affiliateEnabled) {
+          try {
+            const parsed = new URL(url);
+            for (const key of [...parsed.searchParams.keys()]) {
+              if (AFFILIATE_PARAMS.has(key)) parsed.searchParams.delete(key);
+            }
+            url = parsed.toString();
+          } catch { /* ignore */ }
+        }
         onOpenUrl(url, selectionText, item.id, item.label);
         this.hide();
       });
@@ -64,30 +78,60 @@ export class FloatingToolbar {
     const speakBtn = document.createElement('button');
     speakBtn.className = 'sk-btn';
     speakBtn.textContent = '🔊';
-    speakBtn.setAttribute('title', 'Read Aloud');
+    speakBtn.setAttribute('data-tooltip', 'Read Aloud');
     speakBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       if (this.speaking) {
         this.stopSpeech();
-        speakBtn.textContent = '🔊';
       } else {
+        this.onSpeechEnd = () => { speakBtn.textContent = '🔊'; };
         this.speak(selectionText);
         speakBtn.textContent = '🔇';
       }
     });
     this.toolbar.appendChild(speakBtn);
 
+    // Translate Read button
+    if (showTranslateReadButton) {
+      const translateReadBtn = document.createElement('button');
+      translateReadBtn.className = 'sk-btn';
+      translateReadBtn.textContent = '🌐';
+      translateReadBtn.setAttribute('data-tooltip', 'Read in ' + translateLang);
+      translateReadBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (this.speaking) {
+          this.stopSpeech();
+        } else {
+          this.onSpeechEnd = () => { translateReadBtn.textContent = '🌐'; };
+          this.speakWithLang(selectionText, translateLang);
+          translateReadBtn.textContent = '🔇';
+        }
+      });
+      this.toolbar.appendChild(translateReadBtn);
+    }
+
     // Screenshot button
     const screenshotBtn = document.createElement('button');
     screenshotBtn.className = 'sk-btn';
     screenshotBtn.textContent = '📸';
-    screenshotBtn.setAttribute('title', 'Screenshot');
+    screenshotBtn.setAttribute('data-tooltip', 'Screenshot');
     screenshotBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       this.hide();
       onScreenshot();
     });
     this.toolbar.appendChild(screenshotBtn);
+
+    // Close button
+    const closeBtn = document.createElement('button');
+    closeBtn.className = 'sk-btn sk-btn-close';
+    closeBtn.textContent = '\u2715';
+    closeBtn.setAttribute('data-tooltip', 'Close');
+    closeBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      this.hide();
+    });
+    this.toolbar.appendChild(closeBtn);
 
     // Position toolbar
     this.position(rect);
@@ -144,8 +188,8 @@ export class FloatingToolbar {
     this.utterance = new SpeechSynthesisUtterance(text);
     const lang = document.documentElement.lang;
     if (lang) this.utterance.lang = lang;
-    this.utterance.onend = () => { this.speaking = false; };
-    this.utterance.onerror = () => { this.speaking = false; };
+    this.utterance.onend = () => { this.speaking = false; this.onSpeechEnd?.(); };
+    this.utterance.onerror = () => { this.speaking = false; this.onSpeechEnd?.(); };
     speechSynthesis.speak(this.utterance);
     this.speaking = true;
   }
@@ -155,10 +199,22 @@ export class FloatingToolbar {
       speechSynthesis.cancel();
       this.speaking = false;
       this.utterance = null;
+      this.onSpeechEnd?.();
+      this.onSpeechEnd = null;
     }
   }
 
   speakText(text: string) {
     this.speak(text);
+  }
+
+  private speakWithLang(text: string, lang: string) {
+    this.stopSpeech();
+    this.utterance = new SpeechSynthesisUtterance(text);
+    this.utterance.lang = lang;
+    this.utterance.onend = () => { this.speaking = false; this.onSpeechEnd?.(); };
+    this.utterance.onerror = () => { this.speaking = false; this.onSpeechEnd?.(); };
+    speechSynthesis.speak(this.utterance);
+    this.speaking = true;
   }
 }

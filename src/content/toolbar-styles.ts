@@ -63,8 +63,8 @@ export const TOOLBAR_CSS = `
   background: #e0e0e0;
 }
 
-.sk-btn[title]::after {
-  content: attr(title);
+.sk-btn[data-tooltip]::after {
+  content: attr(data-tooltip);
   position: absolute;
   bottom: calc(100% + 4px);
   left: 50%;
@@ -80,8 +80,21 @@ export const TOOLBAR_CSS = `
   color: #fff;
 }
 
-.sk-btn:hover[title]::after {
+.sk-btn:hover[data-tooltip]::after {
   opacity: 1;
+}
+
+.sk-btn-close {
+  font-size: 13px;
+  width: 24px;
+  height: 24px;
+  color: #e74c3c;
+  opacity: 0.7;
+}
+
+.sk-btn-close:hover {
+  opacity: 1;
+  background: rgba(231, 76, 60, 0.15);
 }
 
 .sk-divider {

@@ -107,7 +107,7 @@ browser.contextMenus.onClicked.addListener(async (info, tab) => {
   const item = settings.items.find((i) => i.id === info.menuItemId);
   if (!item) return;
 
-  const url = buildUrl(item.url, info.selectionText, settings.translateLang, item.prompt);
+  const url = buildUrl(item.url, info.selectionText, settings.translateLang, item.prompt, settings.affiliateEnabled !== false);
   if (!isSafeUrl(url)) return;
   await browser.tabs.create({ url });
 
@@ -131,6 +131,8 @@ browser.runtime.onMessage.addListener(((message: any) => {
         translateLang: settings.translateLang,
         enabled: settings.enabled,
         floatingToolbar: settings.floatingToolbar !== false,
+        showTranslateReadButton: settings.showTranslateReadButton !== false,
+        affiliateEnabled: settings.affiliateEnabled !== false,
       };
     });
   }

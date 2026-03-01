@@ -67,7 +67,7 @@ export const DEFAULT_ITEMS: MenuItem[] = [
   {
     id: 'amazon',
     label: 'Amazon',
-    url: 'https://www.amazon.com/s?k=%s',
+    url: 'https://www.amazon.com/s?k=%s&tag=sidekick06a-20',
     category: 'quickjump',
     enabled: true,
     icon: '🛒',
@@ -171,6 +171,8 @@ export const DEFAULT_SETTINGS: ExtensionSettings = {
   uiLang: 'en',
   theme: 'system',
   floatingToolbar: true,
+  showTranslateReadButton: true,
+  affiliateEnabled: true,
 };
 
 export const CATEGORY_LABELS: Record<MenuItem['category'], string> = {

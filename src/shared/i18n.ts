@@ -31,6 +31,7 @@ export interface UiStrings {
   resetToDefaults: string;
   resetConfirm: string;
   invalidFile: string;
+  invalidUrl: string;
 
   // Theme
   theme: string;
@@ -75,6 +76,15 @@ export interface UiStrings {
   targetAi: string;
   addPrompt: string;
 
+  // Translate Read
+  translateRead: string;
+  translateReadDesc: string;
+
+  // Affiliate
+  affiliateLinks: string;
+  affiliateLinksDesc: string;
+  affiliateBanner: string;
+
   // Rate & Share
   enjoyingSidekick: string;
   rateSidekick: string;
@@ -118,6 +128,7 @@ const en: UiStrings = {
   resetToDefaults: 'Reset to Defaults',
   resetConfirm: 'Reset all settings to defaults? This cannot be undone.',
   invalidFile: 'Invalid settings file.',
+  invalidUrl: 'URL must start with https:// or http://',
 
   catSearch: 'Search',
   catTranslate: 'Translate',
@@ -146,6 +157,12 @@ const en: UiStrings = {
   promptPlaceholder: 'Prompt (e.g. Summarize this: %s)',
   targetAi: 'Target AI',
   addPrompt: 'Add Prompt',
+
+  translateRead: 'Translate Read Aloud',
+  translateReadDesc: 'Show a button on the toolbar to read selected text using the translation language voice.',
+  affiliateLinks: 'Support with Affiliate Links',
+  affiliateLinksDesc: 'Some search links include affiliate tags that help support Sidekick at no cost to you.',
+  affiliateBanner: 'Some search links include affiliate tags that help support Sidekick at no extra cost to you. You can disable this below.',
 
   // Rate & Share
   enjoyingSidekick: 'Enjoying Sidekick?',
@@ -190,6 +207,7 @@ const es: UiStrings = {
   resetToDefaults: 'Restablecer valores',
   resetConfirm: '¿Restablecer toda la configuración? No se puede deshacer.',
   invalidFile: 'Archivo de configuración no válido.',
+  invalidUrl: 'La URL debe comenzar con https:// o http://',
 
   catSearch: 'Búsqueda',
   catTranslate: 'Traducción',
@@ -218,6 +236,12 @@ const es: UiStrings = {
   promptPlaceholder: 'Prompt (ej. Resume esto: %s)',
   targetAi: 'IA de destino',
   addPrompt: 'Añadir prompt',
+
+  translateRead: 'Lectura traducida en voz alta',
+  translateReadDesc: 'Mostrar un botón en la barra para leer el texto seleccionado con la voz del idioma de traducción.',
+  affiliateLinks: 'Apoyar con enlaces de afiliados',
+  affiliateLinksDesc: 'Algunos enlaces de búsqueda incluyen etiquetas de afiliados que ayudan a apoyar Sidekick sin costo para ti.',
+  affiliateBanner: 'Algunos enlaces de búsqueda incluyen etiquetas de afiliados que ayudan a apoyar Sidekick sin costo adicional. Puedes desactivarlo abajo.',
 
   // Rate & Share
   enjoyingSidekick: '¿Te gusta Sidekick?',
@@ -262,6 +286,7 @@ const fr: UiStrings = {
   resetToDefaults: 'Réinitialiser',
   resetConfirm: 'Réinitialiser tous les paramètres ? Cette action est irréversible.',
   invalidFile: 'Fichier de paramètres invalide.',
+  invalidUrl: "L'URL doit commencer par https:// ou http://",
 
   catSearch: 'Recherche',
   catTranslate: 'Traduction',
@@ -290,6 +315,12 @@ const fr: UiStrings = {
   promptPlaceholder: 'Prompt (ex. Résume ceci : %s)',
   targetAi: 'IA cible',
   addPrompt: 'Ajouter le prompt',
+
+  translateRead: 'Lecture traduite à voix haute',
+  translateReadDesc: 'Afficher un bouton pour lire le texte sélectionné avec la voix de la langue de traduction.',
+  affiliateLinks: 'Soutenir avec des liens affiliés',
+  affiliateLinksDesc: 'Certains liens de recherche incluent des tags d\'affiliation qui aident à soutenir Sidekick sans frais pour vous.',
+  affiliateBanner: 'Certains liens de recherche incluent des tags d\'affiliation qui aident à soutenir Sidekick sans frais supplémentaires. Vous pouvez désactiver cela ci-dessous.',
 
   // Rate & Share
   enjoyingSidekick: 'Vous aimez Sidekick ?',
@@ -334,6 +365,7 @@ const de: UiStrings = {
   resetToDefaults: 'Zurücksetzen',
   resetConfirm: 'Alle Einstellungen zurücksetzen? Dies kann nicht rückgängig gemacht werden.',
   invalidFile: 'Ungültige Einstellungsdatei.',
+  invalidUrl: 'Die URL muss mit https:// oder http:// beginnen',
 
   catSearch: 'Suche',
   catTranslate: 'Übersetzen',
@@ -362,6 +394,12 @@ const de: UiStrings = {
   promptPlaceholder: 'Prompt (z.B. Fasse zusammen: %s)',
   targetAi: 'Ziel-KI',
   addPrompt: 'Prompt hinzufügen',
+
+  translateRead: 'Übersetzt vorlesen',
+  translateReadDesc: 'Zeige eine Schaltfläche zum Vorlesen des Textes in der Übersetzungssprache.',
+  affiliateLinks: 'Mit Affiliate-Links unterstützen',
+  affiliateLinksDesc: 'Einige Suchlinks enthalten Affiliate-Tags, die Sidekick ohne Kosten für dich unterstützen.',
+  affiliateBanner: 'Einige Suchlinks enthalten Affiliate-Tags, die Sidekick ohne zusätzliche Kosten unterstützen. Du kannst dies unten deaktivieren.',
 
   // Rate & Share
   enjoyingSidekick: 'Gefällt dir Sidekick?',
@@ -406,6 +444,7 @@ const ru: UiStrings = {
   resetToDefaults: 'Сбросить настройки',
   resetConfirm: 'Сбросить все настройки? Это действие нельзя отменить.',
   invalidFile: 'Недопустимый файл настроек.',
+  invalidUrl: 'URL должен начинаться с https:// или http://',
 
   catSearch: 'Поиск',
   catTranslate: 'Перевод',
@@ -434,6 +473,12 @@ const ru: UiStrings = {
   promptPlaceholder: 'Промпт (напр. Резюмируй это: %s)',
   targetAi: 'Целевой ИИ',
   addPrompt: 'Добавить промпт',
+
+  translateRead: 'Прочитать перевод вслух',
+  translateReadDesc: 'Показать кнопку для чтения выделенного текста голосом языка перевода.',
+  affiliateLinks: 'Поддержать через партнёрские ссылки',
+  affiliateLinksDesc: 'Некоторые ссылки содержат партнёрские метки, которые помогают поддержать Sidekick без затрат для вас.',
+  affiliateBanner: 'Некоторые ссылки содержат партнёрские метки, которые помогают поддержать Sidekick без дополнительных затрат. Вы можете отключить это ниже.',
 
   // Rate & Share
   enjoyingSidekick: 'Нравится Sidekick?',
@@ -478,6 +523,7 @@ const ja: UiStrings = {
   resetToDefaults: '初期設定に戻す',
   resetConfirm: 'すべての設定を初期値に戻しますか？この操作は元に戻せません。',
   invalidFile: '無効な設定ファイルです。',
+  invalidUrl: 'URLはhttps://またはhttp://で始まる必要があります',
 
   catSearch: '検索',
   catTranslate: '翻訳',
@@ -506,6 +552,12 @@ const ja: UiStrings = {
   promptPlaceholder: 'プロンプト（例：これを要約して: %s）',
   targetAi: '対象AI',
   addPrompt: 'プロンプトを追加',
+
+  translateRead: '翻訳して読み上げ',
+  translateReadDesc: '翻訳言語の音声でテキストを読み上げるボタンを表示します。',
+  affiliateLinks: 'アフィリエイトリンクでサポート',
+  affiliateLinksDesc: '一部の検索リンクにはSidekickをサポートするアフィリエイトタグが含まれています。',
+  affiliateBanner: '一部の検索リンクにはSidekickをサポートするアフィリエイトタグが含まれています。下で無効にできます。',
 
   // Rate & Share
   enjoyingSidekick: 'Sidekickを気に入りましたか？',
@@ -550,6 +602,7 @@ const zhCN: UiStrings = {
   resetToDefaults: '恢复默认',
   resetConfirm: '恢复所有默认设置？此操作无法撤销。',
   invalidFile: '无效的设置文件。',
+  invalidUrl: 'URL必须以https://或http://开头',
 
   catSearch: '搜索',
   catTranslate: '翻译',
@@ -578,6 +631,12 @@ const zhCN: UiStrings = {
   promptPlaceholder: '提示词（例如 总结一下：%s）',
   targetAi: '目标AI',
   addPrompt: '添加提示词',
+
+  translateRead: '翻译朗读',
+  translateReadDesc: '显示按钮以使用翻译语言语音朗读选中文本。',
+  affiliateLinks: '通过联盟链接支持',
+  affiliateLinksDesc: '部分搜索链接包含联盟标签，帮助支持Sidekick，不会产生额外费用。',
+  affiliateBanner: '部分搜索链接包含联盟标签，帮助支持Sidekick，不会产生额外费用。您可以在下方禁用。',
 
   // Rate & Share
   enjoyingSidekick: '喜欢 Sidekick 吗？',
@@ -622,6 +681,7 @@ const ko: UiStrings = {
   resetToDefaults: '기본값으로 초기화',
   resetConfirm: '모든 설정을 초기화하시겠습니까? 이 작업은 되돌릴 수 없습니다.',
   invalidFile: '잘못된 설정 파일입니다.',
+  invalidUrl: 'URL은 https:// 또는 http://로 시작해야 합니다',
 
   catSearch: '검색',
   catTranslate: '번역',
@@ -650,6 +710,12 @@ const ko: UiStrings = {
   promptPlaceholder: '프롬프트 (예: 이것을 요약해줘: %s)',
   targetAi: '대상 AI',
   addPrompt: '프롬프트 추가',
+
+  translateRead: '번역 읽기',
+  translateReadDesc: '번역 언어 음성으로 선택한 텍스트를 읽는 버튼을 표시합니다.',
+  affiliateLinks: '제휴 링크로 지원',
+  affiliateLinksDesc: '일부 검색 링크에는 Sidekick을 지원하는 제휴 태그가 포함되어 있습니다.',
+  affiliateBanner: '일부 검색 링크에는 Sidekick을 지원하는 제휴 태그가 포함되어 있습니다. 아래에서 비활성화할 수 있습니다.',
 
   // Rate & Share
   enjoyingSidekick: 'Sidekick이 마음에 드시나요?',
@@ -694,6 +760,7 @@ const ar: UiStrings = {
   resetToDefaults: 'إعادة التعيين',
   resetConfirm: 'إعادة تعيين جميع الإعدادات؟ لا يمكن التراجع عن هذا.',
   invalidFile: 'ملف إعدادات غير صالح.',
+  invalidUrl: 'يجب أن يبدأ الرابط بـ https:// أو http://',
 
   catSearch: 'بحث',
   catTranslate: 'ترجمة',
@@ -722,6 +789,12 @@ const ar: UiStrings = {
   promptPlaceholder: 'الأمر (مثال: لخص هذا: %s)',
   targetAi: 'الذكاء الاصطناعي المستهدف',
   addPrompt: 'إضافة أمر',
+
+  translateRead: 'قراءة الترجمة بصوت عالٍ',
+  translateReadDesc: 'عرض زر لقراءة النص المحدد بصوت لغة الترجمة.',
+  affiliateLinks: 'الدعم عبر روابط الإحالة',
+  affiliateLinksDesc: 'بعض روابط البحث تحتوي على علامات إحالة تساعد في دعم Sidekick بدون تكلفة عليك.',
+  affiliateBanner: 'بعض روابط البحث تحتوي على علامات إحالة تساعد في دعم Sidekick بدون تكلفة إضافية. يمكنك تعطيل ذلك أدناه.',
 
   // Rate & Share
   enjoyingSidekick: 'هل تستمتع بـ Sidekick؟',
@@ -766,6 +839,7 @@ const pt: UiStrings = {
   resetToDefaults: 'Restaurar padrões',
   resetConfirm: 'Restaurar todas as configurações? Isso não pode ser desfeito.',
   invalidFile: 'Arquivo de configurações inválido.',
+  invalidUrl: 'O URL deve começar com https:// ou http://',
 
   catSearch: 'Pesquisa',
   catTranslate: 'Tradução',
@@ -794,6 +868,12 @@ const pt: UiStrings = {
   promptPlaceholder: 'Prompt (ex. Resuma isto: %s)',
   targetAi: 'IA alvo',
   addPrompt: 'Adicionar prompt',
+
+  translateRead: 'Ler tradução em voz alta',
+  translateReadDesc: 'Mostrar um botão para ler o texto selecionado com a voz do idioma de tradução.',
+  affiliateLinks: 'Apoiar com links de afiliados',
+  affiliateLinksDesc: 'Alguns links de pesquisa incluem tags de afiliados que ajudam a apoiar o Sidekick sem custo para você.',
+  affiliateBanner: 'Alguns links de pesquisa incluem tags de afiliados que ajudam a apoiar o Sidekick sem custo adicional. Você pode desativar isso abaixo.',
 
   // Rate & Share
   enjoyingSidekick: 'Gostando do Sidekick?',
@@ -838,6 +918,7 @@ const uk: UiStrings = {
   resetToDefaults: 'Скинути налаштування',
   resetConfirm: 'Скинути всі налаштування? Цю дію не можна скасувати.',
   invalidFile: 'Недійсний файл налаштувань.',
+  invalidUrl: 'URL має починатися з https:// або http://',
 
   catSearch: 'Пошук',
   catTranslate: 'Переклад',
@@ -866,6 +947,12 @@ const uk: UiStrings = {
   promptPlaceholder: 'Промпт (напр. Підсумуй це: %s)',
   targetAi: 'Цільовий ШІ',
   addPrompt: 'Додати промпт',
+
+  translateRead: 'Прочитати переклад вголос',
+  translateReadDesc: 'Показати кнопку для читання виділеного тексту голосом мови перекладу.',
+  affiliateLinks: 'Підтримати через партнерські посилання',
+  affiliateLinksDesc: 'Деякі посилання містять партнерські мітки, які допомагають підтримати Sidekick без витрат для вас.',
+  affiliateBanner: 'Деякі посилання містять партнерські мітки, які допомагають підтримати Sidekick без додаткових витрат. Ви можете вимкнути це нижче.',
 
   // Rate & Share
   enjoyingSidekick: 'Подобається Sidekick?',
@@ -910,6 +997,7 @@ const tr: UiStrings = {
   resetToDefaults: 'Varsayılanlara sıfırla',
   resetConfirm: 'Tüm ayarlar sıfırlansın mı? Bu işlem geri alınamaz.',
   invalidFile: 'Geçersiz ayar dosyası.',
+  invalidUrl: "URL https:// veya http:// ile başlamalıdır",
 
   catSearch: 'Arama',
   catTranslate: 'Çeviri',
@@ -938,6 +1026,12 @@ const tr: UiStrings = {
   promptPlaceholder: 'Prompt (örn. Bunu özetle: %s)',
   targetAi: 'Hedef AI',
   addPrompt: 'Prompt ekle',
+
+  translateRead: 'Çeviriyi sesli oku',
+  translateReadDesc: 'Seçili metni çeviri dili sesiyle okumak için bir düğme göster.',
+  affiliateLinks: 'Ortaklık bağlantılarıyla destek ol',
+  affiliateLinksDesc: 'Bazı arama bağlantıları, size maliyet olmadan Sidekick\'i destekleyen ortaklık etiketleri içerir.',
+  affiliateBanner: 'Bazı arama bağlantıları, Sidekick\'i destekleyen ortaklık etiketleri içerir. Bunu aşağıdan devre dışı bırakabilirsiniz.',
 
   // Rate & Share
   enjoyingSidekick: 'Sidekick\'i beğendiniz mi?',
@@ -982,6 +1076,7 @@ const he: UiStrings = {
   resetToDefaults: 'איפוס לברירת מחדל',
   resetConfirm: 'לאפס את כל ההגדרות? לא ניתן לבטל פעולה זו.',
   invalidFile: '.קובץ הגדרות לא תקין',
+  invalidUrl: 'הכתובת חייבת להתחיל ב-https:// או http://',
 
   catSearch: 'חיפוש',
   catTranslate: 'תרגום',
@@ -1010,6 +1105,12 @@ const he: UiStrings = {
   promptPlaceholder: '(פרומפט (לדוגמה: סכם את זה: %s',
   targetAi: 'AI יעד',
   addPrompt: 'הוספת פרומפט',
+
+  translateRead: 'הקראת תרגום בקול',
+  translateReadDesc: '.הצג כפתור לקריאת הטקסט המסומן בקול שפת התרגום',
+  affiliateLinks: 'תמיכה דרך קישורי שותפים',
+  affiliateLinksDesc: '.חלק מקישורי החיפוש כוללים תגי שותפים שעוזרים לתמוך ב-Sidekick ללא עלות עבורך',
+  affiliateBanner: '.חלק מקישורי החיפוש כוללים תגי שותפים שעוזרים לתמוך ב-Sidekick ללא עלות נוספת. ניתן לבטל זאת למטה',
 
   // Rate & Share
   enjoyingSidekick: '?נהנים מ-Sidekick',
