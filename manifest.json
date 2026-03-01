@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Sidekick",
-  "version": "1.0.0",
+  "version": "1.1.1",
   "description": "Highlight text, right-click, and instantly search, translate, or navigate to your favorite sites.",
   "permissions": ["contextMenus", "storage", "activeTab"],
   "background": {

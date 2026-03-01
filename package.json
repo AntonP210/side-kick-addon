@@ -1,6 +1,6 @@
 {
   "name": "sidekick",
-  "version": "1.0.0",
+  "version": "1.1.1",
   "description": "Highlight text, right-click, and instantly search, translate, or navigate — works on Chrome and Firefox",
   "type": "module",
   "scripts": {
